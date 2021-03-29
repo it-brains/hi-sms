@@ -1,0 +1,35 @@
+{
+    "name": "it-brains/hi-sms",
+    "version": "1.0.0",
+    "description": "HiSMS Laravel integration",
+    "keywords": ["laravel", "hisms", "hisms.ws", "hi-sms"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikolay Zhidenko",
+            "email": "dragg.ko@gmail.com",
+            "homepage": "https://it-brains.org",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/log": "^8.34"
+    },
+    "autoload": {
+        "psr-4": {
+            "ITBrains\\HiSMS\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ITBrains\\HiSMS\\HiSMSServiceProvider"
+            ],
+            "aliases": {
+                "HiSMS": "ITBrains\\HiSMS\\Facades\\HiSMSFacade"
+            }
+        }
+    }
+}
