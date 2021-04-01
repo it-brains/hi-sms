@@ -1,13 +1,14 @@
 <?php
 
-namespace ITBrains\HiSMS;
+namespace ITBrains\HiSMS\Drivers;
 
 use Carbon\Carbon;
 use GuzzleHttp\Client as GuzzleClient;
 use InvalidArgumentException;
 use ITBrains\HiSMS\Exceptions\HiSMSException;
+use ITBrains\HiSMS\HiSMSClient;
 
-class Client extends HiSMSClient
+class ApiClient extends HiSMSClient
 {
     private GuzzleClient $client;
 

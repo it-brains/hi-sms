@@ -1,6 +1,6 @@
 {
     "name": "it-brains/hi-sms",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "HiSMS Laravel integration",
     "keywords": ["laravel", "hisms", "hisms.ws", "hi-sms"],
     "license": "MIT",

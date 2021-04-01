@@ -4,11 +4,15 @@ namespace ITBrains\HiSMS;
 
 use Illuminate\Support\ServiceProvider;
 use InvalidArgumentException;
-use Log;
+use ITBrains\HiSMS\Drivers\ApiClient;
+use ITBrains\HiSMS\Drivers\FakedClient;
+use ITBrains\HiSMS\Drivers\LogClient;
 
 class HiSMSServiceProvider extends ServiceProvider
 {
     public const API_DRIVER = 'hisms';
+    public const LOG_DRIVER = 'log';
+    public const NULL_DRIVER = 'null';
 
     /**
      * Register any application services.
@@ -18,15 +22,16 @@ class HiSMSServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(HiSMSClient::class, function () {
-            if (config('hi-sms.driver') === self::API_DRIVER) {
-                return new Client();
+            switch ($driver = config('hi-sms.driver')) {
+                case self::API_DRIVER:
+                    return new ApiClient();
+                case self::LOG_DRIVER:
+                    return new LogClient();
+                case self::NULL_DRIVER:
+                    return new FakedClient();
+                default:
+                    throw new InvalidArgumentException("Unsupported HiSMS '{$driver}' driver.");
             }
-
-            if ($this->app->isProduction()) {
-                Log::warning("You shouldn't use faker Hi SMS client on the production mode.");
-            }
-
-            return new FakedClient();
         });
 
         $this->mergeConfigFrom(__DIR__ . '/../config/hi-sms.php', 'hi-sms');

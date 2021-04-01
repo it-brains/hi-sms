@@ -1,9 +1,10 @@
 <?php
 
-namespace ITBrains\HiSMS;
+namespace ITBrains\HiSMS\Drivers;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\WithFaker;
+use ITBrains\HiSMS\HiSMSClient;
 
 class FakedClient extends HiSMSClient
 {
